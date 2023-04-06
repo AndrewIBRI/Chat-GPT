@@ -1,1 +1,6 @@
-| eval min=if(min=0, min, min/1000."k"), max=if(max>=1000000, round(max/1000000, 1)."M", round(max/1000, 1)."k")
+| eval volume=replace(volume, "0-500000", "0k-500k"),
+       volume=if(volume=="0k-500k", volume,
+                  if(volume>="1000000", replace(round(volume/1000000, 1), "\\.0$", "") . "M",
+                     if(volume< "1000000", replace(round(volume/1000, 1), "\\.0$", "") . "k", "-")
+                  )
+       )
