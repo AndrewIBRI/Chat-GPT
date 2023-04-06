@@ -2,7 +2,6 @@
 Send chat GPT code btween sources
 
 
-| chart sum(valor) over campo1 by campo2 span=500000 
-| rex field=volume "(?<min>\d+)-(?<max>\d+)" 
-| eval min=min/1000, max=max/1000 
-| eval volume=if(max>=1000, tostring(round(max/1000,1))."M", if(min>=1, tostring(round(min,1))."K", tostring(volume)))
+| rex field=volume "(?<min>\d+)[-](?<max>\d+)"
+| eval min=if(min=0, min, min/1000."k"), max=if(max>=1000000, round(max/1000000, 1)."M", round(max/1000, 1)."k")
+
