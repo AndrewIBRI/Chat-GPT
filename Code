@@ -1,6 +1,2 @@
-<query para buscar os logs>
-| join <outro query para buscar logs com mesmo ID>
-| eval timestamp=strptime(_time, "%Y-%m-%d %H:%M:%S.%N"), ID=strftime(timestamp, "%Y-%m-%d %H:%M:%S.%N") + "-" + ID
-| stats min(timestamp) as first, max(timestamp) as last by ID
-| eval timeDiff=last-first
-| timechart span=1d avg(timeDiff)
+| eval time_diff = _time2 - _time1
+| eval time_diff_sec = strftime(time_diff, "%s")
