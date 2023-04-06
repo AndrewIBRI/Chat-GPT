@@ -1,5 +1,1 @@
-| rex field=volume "(?<min>\d+)[-](?<max>\d+)"
-| eval min=if(min=0, "0", tostring(round(min/1000, 1))."k"), 
-       max=if(max>=1000000, tostring(round(max/1000000, 1))."M", 
-             if(max>=1000, tostring(round(max/1000, 1))."k", tostring(max)))
-| eval volume=if(min=="0" AND max!="0", max, min."-".max)
+| eval volume=if(max>=1000000, tostring(round(max/1000000,1))."M", if(max>=1000, tostring(round(max/1000,1))."k", tostring(max))), min=if(min>=1000000, tostring(round(min/1000000,1))."M", if(min>=1000, tostring(round(min/1000,1))."k", tostring(min)))
