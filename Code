@@ -1,4 +1,1 @@
-| eval volume=if(max>=1000000, tostring(round(max/1000000,1))."M",
-            if(max>=1000, tostring(round(max/1000,1))."K",
-            if(min>=1000, tostring(round(min/1000,1))."K",
-            tostring(min)." - ".tostring(max))))
+| eval volume=if(min=0, "0", if(min<1000, tostring(min/1000)."k", tostring(min/1000000)."M"))." - ".if(max<1000, tostring(max/1000)."k", tostring(max/1000000)."M")
