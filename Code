@@ -1,6 +1,4 @@
-| eval volume=replace(volume, "0-500000", "0k-500k"),
-       volume=if(volume=="0k-500k", volume,
-                  if(volume>="1000000", replace(round(volume/1000000, 1), "\\.0$", "") . "M",
-                     if(volume< "1000000", replace(round(volume/1000, 1), "\\.0$", "") . "k", "-")
-                  )
-       )
+| eval volume=if(volume=="0-500000", "0-500k", 
+              if(max>=1000000, "1M+", 
+              if(max>=1000, tostring(round(max/1000))."k-".tostring(round(max/1000)+500)."k", 
+              if(min>=1, tostring(round(min,1))."K-".tostring(round(min+0.5,1))."K", volume))))
