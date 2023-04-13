@@ -1,2 +1,7 @@
 | eval time_diff = _time2 - _time1
 | eval time_diff_sec = strftime(time_diff, "%s")
+
+
+
+
+(?<=\"RfsId\":\")[^\"]+
