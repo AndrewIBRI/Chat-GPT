@@ -5,3 +5,6 @@
 
 
 (?<=\"RfsId\":\")[^\"]+
+
+
+index=<seu-indice> | eval tempo_total=strftime(strptime(timestamp_saida, "%Y-%m-%d %H:%M:%S.%N") - strptime(timestamp_entrada, "%Y-%m-%d %H:%M:%S.%N"), "%H:%M:%S.%N")
